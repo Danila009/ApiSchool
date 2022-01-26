@@ -11,8 +11,8 @@ namespace SchooApi.model
 
         [Required, MaxLength(64)]
         public String DirectorName { get; set; }
-        [Required, MaxLength(256)]
-        public String DirectorDescription { get; set; }
+        [Required]
+        public DateTime DateOfBirth { get; set; }
 
     }
 }

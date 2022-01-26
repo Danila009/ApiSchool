@@ -61,7 +61,7 @@ namespace Test2_API.Controllers
         {
             User user = _efModel.user.FirstOrDefault(x => x.Login == login && x.Password == password);
             
-            if (user == null)
+            if (user != null)
             {
                 var claims = new List<Claim>
                 {

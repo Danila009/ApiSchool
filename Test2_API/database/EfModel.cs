@@ -15,7 +15,7 @@ namespace Test2_API.database
 
         public EfModel(DbContextOptions options) : base(options)
         {
-            Database.EnsureCreated();
+           // Database.EnsureCreated();
         }
 
         public virtual DbSet<School> schools { get; set; }

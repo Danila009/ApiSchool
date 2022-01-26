@@ -29,6 +29,11 @@ namespace Test2_API.model
         public List<Student> Students { get; set; }
 
         [Required]
-        public List<Teacher> Teachers { get; set; } 
+        public virtual List<Teacher> Teachers { get; set; } 
+    
+        public School()
+        {
+            Teachers = new List<Teacher>();
+        }
     }
 }

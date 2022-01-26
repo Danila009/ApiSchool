@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SchooApi.model;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -23,16 +24,21 @@ namespace Test2_API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<School>>> GetSchools()
         {
+      
             return await _efModel.schools.ToListAsync();
         }
 
         [HttpGet("{schoolId}")]
-        public async Task<ActionResult<School>> GetUsers(int schoolId)
+        public async Task<ActionResult<List<Teacher>>> GetTeachers(int schoolId)
         {
-            if (User == null)
+            School school = await _efModel.schools
+               .Include(u => u.Teachers)
+               .FirstOrDefaultAsync(u => u.SchoolId == schoolId);
+
+            if (school == null)
                 return NotFound();
 
-            return await _efModel.schools.FindAsync(schoolId);
+            return school.Teachers;
         }
 
         [HttpPost]
